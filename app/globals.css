@@ -1,26 +1,229 @@
 @import "tailwindcss";
 
+@theme {
+  /* Brand palette — derived from the Dominion Fitness logo */
+  --color-onyx: #0b0908;
+  --color-coffee: #16110d;
+  --color-surface: #1e1712;
+  --color-mocha: #452c2d;
+  --color-walnut: #734717;
+  --color-gold: #dc993d;
+  --color-gold-2: #f2b95e;
+  --color-beige: #bbaf9c;
+  --color-cream: #fcfcfc;
+
+  --font-display: var(--font-anton), Impact, "Arial Narrow", sans-serif;
+  --font-body: var(--font-archivo), system-ui, sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --line: rgba(220, 153, 61, 0.16);
+  --line-soft: rgba(252, 252, 252, 0.08);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: initial; /* Lenis owns scrolling */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-onyx);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-onyx);
+}
+
+/* Thin gold scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-onyx);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-walnut);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* Film-grain overlay for atmosphere */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Display type helpers */
+.font-display {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.text-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-gold);
+}
+
+.text-stroke-faint {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(220, 153, 61, 0.35);
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+/* Layout helpers */
+.container-x {
+  width: 100%;
+  max-width: 82rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
+}
+
+.section-pad {
+  padding-block: clamp(4.5rem, 10vw, 8.5rem);
+}
+
+.hairline-t {
+  border-top: 1px solid var(--line-soft);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 2rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  white-space: nowrap;
+}
+
+.btn-gold {
+  background: var(--color-gold);
+  color: var(--color-onyx);
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+}
+.btn-gold:hover {
+  background: var(--color-gold-2);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  border: 1px solid var(--color-walnut);
+  color: var(--color-cream);
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+}
+.btn-ghost:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
+/* Marquee track (speed modulated by scroll velocity via GSAP) */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+/* Card base */
+.panel {
+  background: var(--color-coffee);
+  border: 1px solid var(--line-soft);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.panel:hover {
+  border-color: var(--line);
+}
+
+/* Gold corner accent used across cards */
+.corner-tag {
+  position: relative;
+}
+.corner-tag::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(225deg, var(--color-gold) 0%, var(--color-gold) 49%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.corner-tag:hover::after {
+  opacity: 1;
+}
+
+/* Reveal default state (GSAP animates in) */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(42px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* FAQ accordion */
+details.faq summary {
+  cursor: pointer;
+  list-style: none;
+}
+details.faq summary::-webkit-details-marker {
+  display: none;
+}
+details.faq[open] .faq-icon {
+  transform: rotate(45deg);
+}
+details.faq .faq-icon {
+  transition: transform 0.3s ease;
+}
+
+/* Placeholder "photo" panels — replace with real photos later */
+.photo-ph {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 20% 10%, rgba(220, 153, 61, 0.22) 0%, transparent 55%),
+    radial-gradient(100% 100% at 90% 90%, rgba(69, 44, 45, 0.85) 0%, transparent 60%),
+    linear-gradient(160deg, #241a12 0%, #100c09 70%);
+}
+.photo-ph::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  opacity: 0.5;
 }

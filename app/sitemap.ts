@@ -1,0 +1,12 @@
+import type { MetadataRoute } from "next";
+import { site } from "@/lib/data";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const pages = ["", "/about", "/programs", "/schedule", "/contact"];
+  return pages.map((p) => ({
+    url: `${site.url}${p}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: p === "" ? 1 : 0.8,
+  }));
+}

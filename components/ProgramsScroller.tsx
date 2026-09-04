@@ -1,0 +1,126 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { programs } from "@/lib/data";
+import Reveal from "@/components/Reveal";
+
+gsap.registerPlugin(ScrollTrigger);
+
+/**
+ * Pinned section — vertical scroll drives the program cards horizontally
+ * on desktop. On mobile it falls back to a native swipe carousel.
+ */
+export default function ProgramsScroller() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      const track = trackRef.current;
+      const section = sectionRef.current;
+      if (!track || !section) return;
+
+      const getDistance = () => track.scrollWidth - window.innerWidth;
+
+      const tween = gsap.to(track, {
+        x: () => -getDistance(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => `+=${getDistance()}`,
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true,
+          anticipatePin: 1,
+        },
+      });
+
+      return () => {
+        tween.scrollTrigger?.kill();
+        tween.kill();
+      };
+    });
+
+    return () => mm.revert();
+  }, []);
+
+  return (
+    <section ref={sectionRef} id="programs" className="overflow-hidden bg-onyx">
+      <div className="flex min-h-svh flex-col justify-center py-16">
+        <Reveal className="container-x mb-10 flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="eyebrow mb-3">What we train</p>
+            <h2 className="font-display text-[clamp(2.4rem,6vw,4.5rem)] leading-none">
+              OUR <span className="text-gold">PROGRAMS</span>
+            </h2>
+          </div>
+          <p className="hidden max-w-xs text-sm text-beige md:block">
+            Keep scrolling — the floor moves with you. Six paths, one standard.
+          </p>
+        </Reveal>
+
+        <div
+          ref={trackRef}
+          className="flex snap-x snap-mandatory gap-6 overflow-x-auto px-[clamp(1.25rem,4vw,3rem)] pb-4 md:snap-none md:overflow-x-visible md:pb-0"
+        >
+          {programs.map((p) => (
+            <article
+              key={p.slug}
+              className="panel corner-tag group relative flex w-[82vw] max-w-[420px] shrink-0 snap-center flex-col justify-between p-8 md:w-[420px] md:p-10"
+              style={{ minHeight: "460px" }}
+            >
+              <div>
+                <span className="font-display text-stroke-faint text-7xl">{p.num}</span>
+                <h3 className="font-display mt-6 text-3xl leading-tight transition-colors group-hover:text-gold md:text-4xl">
+                  {p.title}
+                </h3>
+                <p className="mt-4 text-sm leading-relaxed text-beige">{p.blurb}</p>
+              </div>
+              <div>
+                <ul className="mb-8 flex flex-wrap gap-2">
+                  {p.tags.map((t) => (
+                    <li
+                      key={t}
+                      className="border border-walnut/60 px-3 py-1 text-[0.65rem] uppercase tracking-[0.15em] text-beige"
+                    >
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={`/programs#${p.slug}`}
+                  className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-gold"
+                >
+                  View Program
+                  <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+                </Link>
+              </div>
+            </article>
+          ))}
+
+          {/* End card */}
+          <article className="flex w-[82vw] max-w-[420px] shrink-0 snap-center flex-col items-start justify-center bg-gold p-10 text-onyx md:w-[420px]">
+            <h3 className="font-display text-4xl leading-tight">
+              NOT SURE WHERE TO START?
+            </h3>
+            <p className="mt-4 text-sm font-medium leading-relaxed">
+              Take the free BMI check below or message us — we&apos;ll match you to the right program.
+            </p>
+            <Link
+              href="/#bmi"
+              className="mt-8 border-2 border-onyx px-6 py-3 font-display uppercase tracking-wider transition-colors hover:bg-onyx hover:text-gold"
+            >
+              Check My BMI
+            </Link>
+          </article>
+        </div>
+      </div>
+    </section>
+  );
+}
