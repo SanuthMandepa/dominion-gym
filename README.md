@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dominion Fitness — Website
 
-## Getting Started
+Marketing site for Dominion Fitness, a gym in Sri Lanka. Built with Next.js 16
+(App Router), Tailwind v4, Lenis smooth scrolling and GSAP ScrollTrigger.
 
-First, run the development server:
+## Running it
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000. To build for production: `npm run build && npm start`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Pages
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Route       | Contents                                                                 |
+| ----------- | ------------------------------------------------------------------------ |
+| `/`         | Hero, marquee, about preview + stats, programs scroller, coach, BMI calculator, facilities, pricing, testimonials, FAQ, CTA |
+| `/about`    | Story, values, stats, coach, facilities, Facebook link                    |
+| `/programs` | All six programs in detail (anchor links like `/programs#fat-loss`)       |
+| `/schedule` | Weekly class timetable and opening hours                                  |
+| `/contact`  | Address, phone, email, hours and a WhatsApp enquiry form                  |
 
-## Learn More
+## Editing the content
 
-To learn more about Next.js, take a look at the following resources:
+**Almost everything you need to change lives in [`lib/data.ts`](lib/data.ts).**
+Anything still carrying real-world defaults is marked `[PLACEHOLDER]` there:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `site` — phone, WhatsApp number, email, address, domain, opening hours
+- `pricing` — the three membership tiers (currently in LKR)
+- `coach` — bio and certifications
+- `testimonials` — swap for real member reviews
+- `timetable` — the weekly class grid
+- `faqs`, `programs`, `facilities`, `stats`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The head coach's name (`P.B. Vithana`) came from the gym's Facebook page; the
+Facebook URL itself is already wired into the navbar footer and about page.
 
-## Deploy on Vercel
+### Photos
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+There are no images yet. Every photo slot renders a dark gradient placeholder
+via the `.photo-ph` class (defined in `app/globals.css`). To add real photos,
+drop them in `public/` and replace the placeholder `<div>` with `next/image`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```tsx
+<Image src="/coach.jpg" alt="Coach P.B. Vithana" fill className="object-cover" />
+```
+
+The slots are in `components/CoachSection.tsx`, `components/Gallery.tsx`,
+`app/page.tsx`, `app/programs/page.tsx` and `app/contact/page.tsx` (map embed).
+
+### Contact form
+
+`components/ContactForm.tsx` has no backend — it opens WhatsApp with the
+message pre-filled. Swap in Formspree, Resend or a route handler if you'd
+rather collect submissions by email.
+
+## Design system
+
+Colours are defined as Tailwind theme tokens in `app/globals.css`, derived from
+the logo: `onyx` (background), `coffee` (panels), `gold` (accent), `beige`
+(muted text), `cream` (text), plus `walnut` and `mocha`. Type is **Anton** for
+display and **Archivo** for body, loaded via `next/font`.
+
+## Motion
+
+- **Lenis** drives smooth scrolling (`components/SmoothScroll.tsx`), disabled
+  when the visitor prefers reduced motion.
+- **Reveals** use IntersectionObserver, not ScrollTrigger, so they fire however
+  the page was scrolled — including a reload part-way down. They're only hidden
+  under `@media (scripting: enabled)`, so content stays visible without JS.
+- **GSAP ScrollTrigger** handles the hero parallax, the velocity-reactive
+  marquees and the pinned horizontal programs scroller. The scroller uses CSS
+  `sticky` rather than ScrollTrigger's pinning so React never loses ownership of
+  the DOM; on mobile it falls back to a native swipe carousel.
+
+## SEO
+
+Per-page metadata and Open Graph tags, `Gym` JSON-LD schema (address, hours,
+Facebook) in the root layout, plus generated `sitemap.xml` and `robots.txt`.
+Update `site.url` in `lib/data.ts` when you have the real domain — the sitemap
+and canonical URLs are built from it.

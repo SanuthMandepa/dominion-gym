@@ -1,19 +1,22 @@
 "use client";
 
 import { ReactNode, useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 type Props = {
   children: ReactNode;
   className?: string;
+  /** Stagger in seconds */
   delay?: number;
   as?: "div" | "section" | "li" | "span";
 };
 
-/** Fades + slides content up when it scrolls into view. */
+/**
+ * Fades + slides content up when it scrolls into view.
+ *
+ * Uses IntersectionObserver rather than ScrollTrigger so it fires no matter
+ * how the page reached this position — smooth-scrolled, jumped via anchor, or
+ * restored by the browser on reload.
+ */
 export default function Reveal({ children, className, delay = 0, as = "div" }: Props) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -21,28 +24,37 @@ export default function Reveal({ children, className, delay = 0, as = "div" }: P
     const el = ref.current;
     if (!el) return;
 
-    const tween = gsap.fromTo(
-      el,
-      { y: 42, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        delay,
-        ease: "power3.out",
-        scrollTrigger: { trigger: el, start: "top 88%", once: true },
-      }
+    const show = () => el.setAttribute("data-revealed", "");
+
+    if (typeof IntersectionObserver === "undefined") {
+      show();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            show();
+            observer.disconnect();
+          }
+        }
+      },
+      { rootMargin: "0px 0px -12% 0px" }
     );
 
-    return () => {
-      tween.scrollTrigger?.kill();
-      tween.kill();
-    };
-  }, [delay]);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const Tag = as as "div";
   return (
-    <Tag ref={ref} data-reveal className={className}>
+    <Tag
+      ref={ref}
+      data-reveal
+      className={className}
+      style={delay ? { transitionDelay: `${delay}s` } : undefined}
+    >
       {children}
     </Tag>
   );

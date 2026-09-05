@@ -26,7 +26,9 @@ export default function ProgramsScroller() {
       const track = trackRef.current;
       if (!section || !track) return;
 
-      const distance = () => Math.max(0, track.scrollWidth - window.innerWidth);
+      // The track is `w-max` on desktop, so its own width is the full row of
+      // cards. (scrollWidth would be useless here — overflow-x is visible.)
+      const distance = () => Math.max(0, track.offsetWidth - window.innerWidth);
       const setHeight = () => {
         section.style.height = `${window.innerHeight + distance()}px`;
       };
@@ -73,17 +75,17 @@ export default function ProgramsScroller() {
 
         <div
           ref={trackRef}
-          className="flex snap-x snap-mandatory gap-6 overflow-x-auto px-[clamp(1.25rem,4vw,3rem)] pb-4 md:snap-none md:overflow-x-visible md:pb-0"
+          className="flex snap-x snap-mandatory gap-6 overflow-x-auto px-[clamp(1.25rem,4vw,3rem)] pb-4 md:w-max md:snap-none md:overflow-x-visible md:pb-0"
         >
           {programs.map((p) => (
             <article
               key={p.slug}
-              className="panel corner-tag group relative flex w-[82vw] max-w-[420px] shrink-0 snap-center flex-col justify-between p-8 md:w-[420px] md:p-10"
+              className="panel corner-tag group relative flex w-[82vw] max-w-105 shrink-0 snap-center flex-col justify-between p-8 md:w-105 md:p-10"
               style={{ minHeight: "460px" }}
             >
               <div>
-                <span className="font-display text-stroke-faint text-7xl">{p.num}</span>
-                <h3 className="font-display mt-6 text-3xl leading-tight transition-colors group-hover:text-gold md:text-4xl">
+                <span className="font-display text-stroke-faint text-[clamp(3.5rem,9vw,4.5rem)]">{p.num}</span>
+                <h3 className="font-display mt-6 text-[clamp(1.75rem,4vw,2.25rem)] leading-tight transition-colors group-hover:text-gold">
                   {p.title}
                 </h3>
                 <p className="mt-4 text-sm leading-relaxed text-beige">{p.blurb}</p>
@@ -111,8 +113,8 @@ export default function ProgramsScroller() {
           ))}
 
           {/* End card */}
-          <article className="flex w-[82vw] max-w-[420px] shrink-0 snap-center flex-col items-start justify-center bg-gold p-10 text-onyx md:w-[420px]">
-            <h3 className="font-display text-4xl leading-tight">NOT SURE WHERE TO START?</h3>
+          <article className="flex w-[82vw] max-w-105 shrink-0 snap-center flex-col items-start justify-center bg-gold p-10 text-onyx md:w-105">
+            <h3 className="font-display text-[clamp(1.75rem,4vw,2.25rem)] leading-tight">NOT SURE WHERE TO START?</h3>
             <p className="mt-4 text-sm font-medium leading-relaxed">
               Take the free BMI check below or message us — we&apos;ll match you to the right program.
             </p>

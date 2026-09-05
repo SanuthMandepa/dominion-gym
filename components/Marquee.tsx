@@ -25,6 +25,7 @@ export default function Marquee({ items, speed = 22, outline = false, className 
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const loop = gsap.to(track, {
       xPercent: -50,

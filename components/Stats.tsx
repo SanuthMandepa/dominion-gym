@@ -2,31 +2,57 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { stats } from "@/lib/data";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function Stats() {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>(".stat-num").forEach((el) => {
-        const target = Number(el.dataset.value ?? 0);
-        const obj = { n: 0 };
-        gsap.to(obj, {
-          n: target,
-          duration: 1.8,
-          ease: "power2.out",
-          scrollTrigger: { trigger: el, start: "top 88%", once: true },
-          onUpdate: () => {
-            el.textContent = String(Math.round(obj.n));
-          },
-        });
+    const root = ref.current;
+    if (!root) return;
+
+    const nums = Array.from(root.querySelectorAll<HTMLElement>(".stat-num"));
+
+    const countUp = (el: HTMLElement) => {
+      const target = Number(el.dataset.value ?? 0);
+      if (el.dataset.counted) return;
+      el.dataset.counted = "1";
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        el.textContent = String(target);
+        return;
+      }
+
+      const obj = { n: 0 };
+      gsap.to(obj, {
+        n: target,
+        duration: 1.8,
+        ease: "power2.out",
+        onUpdate: () => {
+          el.textContent = String(Math.round(obj.n));
+        },
       });
-    }, ref);
-    return () => ctx.revert();
+    };
+
+    if (typeof IntersectionObserver === "undefined") {
+      nums.forEach(countUp);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            countUp(entry.target as HTMLElement);
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { rootMargin: "0px 0px -12% 0px" }
+    );
+
+    nums.forEach((n) => observer.observe(n));
+    return () => observer.disconnect();
   }, []);
 
   return (
