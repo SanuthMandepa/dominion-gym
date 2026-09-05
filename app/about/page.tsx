@@ -9,7 +9,7 @@ import Reveal from "@/components/Reveal";
 import { site } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "About Us — Our Story & Head Coach",
+  title: "About Us: Our Story & Head Coach",
   description:
     "Dominion Fitness was founded in 2025 in Sri Lanka on one belief: transformation takes discipline. Meet our head coach and see the standard we train by.",
 };
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const values = [
   {
     title: "Discipline First",
-    desc: "Motivation fades. Discipline is what walks you through the door on the days you don't feel like it — and those are the days that count.",
+    desc: "Motivation fades. Discipline is what walks you through the door on the days you don't feel like it, and those are the days that count.",
   },
   {
     title: "Coaching, Not Guessing",
@@ -50,7 +50,7 @@ export default function AboutPage() {
               <span className="text-stroke">IS DISCIPLINE.</span>
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-beige">
-              {site.name} was founded in {site.founded} in Sri Lanka — not to be the biggest gym, but
+              {site.name} was founded in {site.founded} in Sri Lanka, not to be the biggest gym, but
               to be the most serious one. A place where the plan is real, the coaching is real, and
               the results speak in before-and-after photos.
             </p>
@@ -96,7 +96,7 @@ export default function AboutPage() {
               TRANSFORMATIONS, POSTED <span className="text-gold">WEEKLY</span>
             </h2>
             <p className="mx-auto mt-4 max-w-md text-beige">
-              Real member progress, training clips and gym updates — follow us on Facebook.
+              Real member progress, training clips and gym updates. Follow us on Facebook.
             </p>
             <div className="mt-8 flex justify-center">
               <Link

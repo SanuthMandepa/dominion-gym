@@ -1,4 +1,4 @@
-# Dominion Fitness — Website
+# Dominion Fitness Website
 
 Marketing site for Dominion Fitness, a gym in Sri Lanka. Built with Next.js 16
 (App Router), Tailwind v4, Lenis smooth scrolling and GSAP ScrollTrigger.
@@ -26,11 +26,11 @@ Then open http://localhost:3000. To build for production: `npm run build && npm 
 **Almost everything you need to change lives in [`lib/data.ts`](lib/data.ts).**
 Anything still carrying real-world defaults is marked `[PLACEHOLDER]` there:
 
-- `site` — phone, WhatsApp number, email, address, domain, opening hours
-- `pricing` — the three membership tiers (currently in LKR)
-- `coach` — bio and certifications
-- `testimonials` — swap for real member reviews
-- `timetable` — the weekly class grid
+- `site`: phone, WhatsApp number, email, address, domain, opening hours
+- `pricing`: the three membership tiers (currently in LKR)
+- `coach`: bio and certifications
+- `testimonials`: swap for real member reviews
+- `timetable`: the weekly class grid
 - `faqs`, `programs`, `facilities`, `stats`
 
 The head coach's name (`P.B. Vithana`) came from the gym's Facebook page; the
@@ -51,7 +51,7 @@ The slots are in `components/CoachSection.tsx`, `components/Gallery.tsx`,
 
 ### Contact form
 
-`components/ContactForm.tsx` has no backend — it opens WhatsApp with the
+`components/ContactForm.tsx` has no backend. It opens WhatsApp with the
 message pre-filled. Swap in Formspree, Resend or a route handler if you'd
 rather collect submissions by email.
 
@@ -67,7 +67,7 @@ display and **Archivo** for body, loaded via `next/font`.
 - **Lenis** drives smooth scrolling (`components/SmoothScroll.tsx`), disabled
   when the visitor prefers reduced motion.
 - **Reveals** use IntersectionObserver, not ScrollTrigger, so they fire however
-  the page was scrolled — including a reload part-way down. They're only hidden
+  the page was scrolled, including a reload part-way down. They're only hidden
   under `@media (scripting: enabled)`, so content stays visible without JS.
 - **GSAP ScrollTrigger** handles the hero parallax, the velocity-reactive
   marquees and the pinned horizontal programs scroller. The scroller uses CSS
@@ -78,5 +78,5 @@ display and **Archivo** for body, loaded via `next/font`.
 
 Per-page metadata and Open Graph tags, `Gym` JSON-LD schema (address, hours,
 Facebook) in the root layout, plus generated `sitemap.xml` and `robots.txt`.
-Update `site.url` in `lib/data.ts` when you have the real domain — the sitemap
+Update `site.url` in `lib/data.ts` when you have the real domain. The sitemap
 and canonical URLs are built from it.

@@ -5,7 +5,7 @@ import Reveal from "@/components/Reveal";
 import { programs } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Training Programs — Strength, Muscle, Fat Loss & More",
+  title: "Training Programs: Strength, Muscle, Fat Loss & More",
   description:
     "Six structured training programs at Dominion Fitness: strength training, muscle building, fat loss & conditioning, functional fitness, personal training and beginner foundations.",
 };
@@ -25,7 +25,7 @@ export default function ProgramsPage() {
               SIX PATHS. <span className="text-gold">ONE STANDARD.</span>
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-beige">
-              Every program is structured, coached and tracked. Pick the one that matches your goal —
+              Every program is structured, coached and tracked. Pick the one that matches your goal,
               or take the free assessment and we&apos;ll pick it with you.
             </p>
           </Reveal>

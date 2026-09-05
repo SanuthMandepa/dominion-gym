@@ -49,7 +49,7 @@ export default function ContactForm() {
               {p.title}
             </option>
           ))}
-          <option value="Not sure yet">Not sure yet — help me choose</option>
+          <option value="Not sure yet">Not sure yet, help me choose</option>
         </select>
       </div>
 
@@ -62,7 +62,7 @@ export default function ContactForm() {
           rows={4}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder="Tell us anything that helps — experience, injuries, preferred times..."
+          placeholder="Tell us anything that helps: experience, injuries, preferred times..."
           className={fieldCls}
         />
       </div>
@@ -71,7 +71,7 @@ export default function ContactForm() {
         Send via WhatsApp
       </button>
       <p className="text-center text-[0.65rem] text-beige/50">
-        Opens WhatsApp with your message ready to send — no forms, no waiting.
+        Opens WhatsApp with your message ready to send. No forms, no waiting.
       </p>
     </form>
   );

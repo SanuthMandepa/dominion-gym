@@ -14,7 +14,7 @@ type Props = {
  * Fades + slides content up when it scrolls into view.
  *
  * Uses IntersectionObserver rather than ScrollTrigger so it fires no matter
- * how the page reached this position — smooth-scrolled, jumped via anchor, or
+ * how the page reached this position: smooth-scrolled, jumped via anchor, or
  * restored by the browser on reload.
  */
 export default function Reveal({ children, className, delay = 0, as = "div" }: Props) {

@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {
     // Native scrolls (browser scroll restoration, programmatic jumps, keyboard
-    // paging) bypass Lenis, so keep ScrollTrigger in sync with them too —
+    // paging) bypass Lenis, so keep ScrollTrigger in sync with them too;
     // otherwise reveal animations never fire and content stays invisible.
     const update = () => ScrollTrigger.update();
     window.addEventListener("scroll", update, { passive: true });

@@ -8,7 +8,7 @@ import { site } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Class Schedule & Opening Hours",
   description:
-    "Weekly class timetable at Dominion Fitness — strength, HIIT, fat loss, functional fitness and more. Open 7 days a week in Sri Lanka.",
+    "Weekly class timetable at Dominion Fitness: strength, HIIT, fat loss, functional fitness and more. Open 7 days a week in Sri Lanka.",
 };
 
 export default function SchedulePage() {
@@ -26,7 +26,7 @@ export default function SchedulePage() {
               PLAN YOUR <span className="text-gold">WEEK</span>
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-beige">
-              Outside class times the floor is always yours — open gym runs all day, every day. Class
+              Outside class times the floor is always yours. Open gym runs all day, every day. Class
               spots are first come, first served; members can reserve via WhatsApp.
             </p>
           </Reveal>

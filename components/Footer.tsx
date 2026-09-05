@@ -19,7 +19,7 @@ export default function Footer() {
               DOMINION<span className="text-gold">.</span>
             </p>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-beige">
-              {site.tagline}. Strength, discipline and transformation — built daily in Sri Lanka since{" "}
+              {site.tagline}. Strength, discipline and transformation, built daily in Sri Lanka since{" "}
               {site.founded}.
             </p>
             <div className="mt-6 flex gap-3">

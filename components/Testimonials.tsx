@@ -51,7 +51,7 @@ export default function Testimonials() {
         {testimonials.map((t) => (
           <article
             key={t.name}
-            className="panel corner-tag flex w-[85vw] max-w-[440px] shrink-0 snap-center flex-col justify-between p-8 md:p-10"
+            className="panel corner-tag flex w-[85vw] max-w-110 shrink-0 snap-center flex-col justify-between p-8 md:p-10"
           >
             <div>
               <span className="font-display text-6xl leading-none text-gold" aria-hidden>

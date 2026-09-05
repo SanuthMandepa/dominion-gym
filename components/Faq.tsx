@@ -11,7 +11,7 @@ export default function Faq() {
             BEFORE YOU <span className="text-gold">ASK</span>
           </h2>
           <p className="mt-5 max-w-sm text-beige">
-            Everything most people want to know before their first session. Anything else — message us
+            Everything most people want to know before their first session. Anything else, message us
             on WhatsApp, we reply fast.
           </p>
         </Reveal>

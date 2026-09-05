@@ -5,9 +5,9 @@ import Marquee from "@/components/Marquee";
 import { site } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Contact & Join — Start Your Transformation",
+  title: "Contact & Join: Start Your Transformation",
   description:
-    "Join Dominion Fitness today. Visit us in Sri Lanka, call, or message us on WhatsApp — your first fitness assessment is free.",
+    "Join Dominion Fitness today. Visit us in Sri Lanka, call, or message us on WhatsApp. Your first fitness assessment is free.",
 };
 
 export default function ContactPage() {
@@ -25,7 +25,7 @@ export default function ContactPage() {
               START <span className="text-gold">TODAY</span>
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-beige">
-              Walk in, call, or message us — your first visit includes a free fitness assessment and a
+              Walk in, call, or message us. Your first visit includes a free fitness assessment and a
               tour of the floor. No pressure, no sales script.
             </p>
           </Reveal>
@@ -39,7 +39,7 @@ export default function ContactPage() {
             <Reveal className="panel p-8">
               <p className="eyebrow mb-3">Visit us</p>
               <p className="font-display text-2xl leading-snug">{site.address}</p>
-              {/* Map placeholder — drop a Google Maps embed <iframe> here */}
+              {/* Map placeholder: drop a Google Maps embed <iframe> here */}
               <div className="photo-ph mt-6 flex aspect-[16/8] items-center justify-center">
                 <p className="text-xs uppercase tracking-[0.25em] text-beige/60">Map embed goes here</p>
               </div>

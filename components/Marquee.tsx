@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 type Props = {
   items: string[];
-  /** Base seconds for one loop — lower is faster */
+  /** Base seconds for one loop; lower is faster */
   speed?: number;
   /** Outlined ghost text instead of solid */
   outline?: boolean;
@@ -17,7 +17,7 @@ type Props = {
 
 /**
  * Infinite horizontal text marquee whose speed and direction react
- * to scroll velocity — scroll fast and it races, scroll up and it reverses.
+ * to scroll velocity: scroll fast and it races, scroll up and it reverses.
  */
 export default function Marquee({ items, speed = 22, outline = false, className = "" }: Props) {
   const trackRef = useRef<HTMLDivElement>(null);

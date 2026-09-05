@@ -23,11 +23,11 @@ const archivo = Archivo({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Gym & Fitness Centre in Sri Lanka`,
+    default: `${site.name} | Gym & Fitness Centre in Sri Lanka`,
     template: `%s | ${site.name}`,
   },
   description:
-    "Dominion Fitness is a modern gym and fitness centre in Sri Lanka. Strength training, muscle building, fat loss programs, personal coaching and a free BMI calculator. Rule your body — start your transformation today.",
+    "Dominion Fitness is a modern gym and fitness centre in Sri Lanka. Strength training, muscle building, fat loss programs, personal coaching and a free BMI calculator. Rule your body. Start your transformation today.",
   keywords: [
     "gym Sri Lanka",
     "fitness centre",
@@ -40,14 +40,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: site.name,
-    title: `${site.name} — Rule Your Body`,
+    title: `${site.name} | Rule Your Body`,
     description:
       "Modern gym & fitness centre in Sri Lanka. Strength, discipline, transformation.",
     url: site.url,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Rule Your Body`,
+    title: `${site.name} | Rule Your Body`,
     description: "Modern gym & fitness centre in Sri Lanka.",
   },
   robots: { index: true, follow: true },

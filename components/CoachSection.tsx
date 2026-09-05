@@ -6,7 +6,7 @@ export default function CoachSection() {
   return (
     <section className="section-pad bg-onyx">
       <div className="container-x grid items-center gap-12 lg:grid-cols-2">
-        {/* Portrait placeholder — replace with a real photo of the coach */}
+        {/* Portrait placeholder: replace with a real photo of the coach */}
         <Reveal className="photo-ph relative aspect-[4/5] max-h-[640px] w-full">
           <div className="absolute inset-0 flex items-end p-8">
             <p className="font-display text-stroke-faint text-[clamp(4rem,8vw,7rem)] leading-[0.9]">

@@ -32,7 +32,7 @@ export default function Home() {
             </h2>
             <p className="mt-6 leading-relaxed text-beige">
               {site.name} opened its doors in {site.founded} with a simple standard: train with
-              purpose, or don&apos;t train at all. We&apos;re not a social club with weights — we&apos;re a
+              purpose, or don&apos;t train at all. We&apos;re not a social club with weights. We&apos;re a
               floor where transformations happen, backed by real coaching and programs that work.
             </p>
             <p className="mt-4 leading-relaxed text-beige">

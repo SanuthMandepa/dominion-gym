@@ -1,5 +1,5 @@
 /**
- * ─── DOMINION FITNESS — SITE CONTENT ─────────────────────────────
+ * ─── DOMINION FITNESS: SITE CONTENT ──────────────────────────────
  * Every piece of text, price and contact detail lives here.
  * Items marked [PLACEHOLDER] should be replaced with real details.
  */
@@ -44,7 +44,7 @@ export const programs: Program[] = [
     title: "Strength Training",
     blurb: "Build raw power with progressive barbell and free-weight work.",
     detail:
-      "Structured strength cycles built around the big lifts — squat, bench, deadlift and press. Every session is programmed with progressive overload so you get measurably stronger week after week.",
+      "Structured strength cycles built around the big lifts: squat, bench, deadlift and press. Every session is programmed with progressive overload so you get measurably stronger week after week.",
     tags: ["Barbell", "Progressive Overload", "All Levels"],
   },
   {
@@ -69,7 +69,7 @@ export const programs: Program[] = [
     slug: "functional-fitness",
     num: "04",
     title: "Functional Fitness",
-    blurb: "Move better everywhere — mobility, core and athletic work.",
+    blurb: "Move better everywhere: mobility, core and athletic work.",
     detail:
       "Kettlebells, sleds, odd objects and bodyweight flows that build a body that performs outside the gym: stronger joints, better posture, real-world athleticism.",
     tags: ["Mobility", "Core", "Athletic"],
@@ -80,7 +80,7 @@ export const programs: Program[] = [
     title: "Personal Training",
     blurb: "1-on-1 coaching with a plan built around your body.",
     detail:
-      "Private sessions with our head coach. Your assessment, your goals, your program — with form coaching on every rep and a direct line to your trainer between sessions.",
+      "Private sessions with our head coach. Your assessment, your goals, your program, with form coaching on every rep and a direct line to your trainer between sessions.",
     tags: ["1-on-1", "Custom Plan", "Fast Results"],
   },
   {
@@ -97,7 +97,7 @@ export const programs: Program[] = [
 export const coach = {
   name: "P.B. Vithana", // from the Dominion Fitness Facebook page
   role: "Head Coach & Founder",
-  bio: "Coach Vithana built Dominion Fitness on one belief: anyone can walk into a gym, but a transformation takes discipline. His own 3-month transformation is proof — self-confidence, determination and dedication, applied daily. He now brings that same standard to every member on the floor.",
+  bio: "Coach Vithana built Dominion Fitness on one belief: anyone can walk into a gym, but a transformation takes discipline. His own 3-month transformation is the proof. Self-confidence, determination and dedication, applied daily. He now brings that same standard to every member on the floor.",
   quote: "Gym is one day. Transformation is discipline.",
   certs: [
     "Certified Fitness Instructor", // [PLACEHOLDER] real certifications
@@ -148,12 +148,12 @@ export const pricing = [
       "Guest passes",
     ],
   },
-]; // [PLACEHOLDER] prices in LKR — update with real rates
+]; // [PLACEHOLDER] prices in LKR, update with real rates
 
 export const testimonials = [
   {
     name: "Heshara W.",
-    text: "Three months in and people I haven't seen since last year don't recognise me. The coaching here is on a different level — every session has a purpose.",
+    text: "Three months in and people I haven't seen since last year don't recognise me. The coaching here is on a different level. Every session has a purpose.",
     tag: "3-Month Transformation",
   },
   {
@@ -163,7 +163,7 @@ export const testimonials = [
   },
   {
     name: "Dilini F.",
-    text: "Lost 8kg without losing strength. The fat loss program is hard, honest work — but the weekly targets kept me accountable every single day.",
+    text: "Lost 8kg without losing strength. The fat loss program is hard, honest work, but the weekly targets kept me accountable every single day.",
     tag: "Fat Loss Program",
   },
   {
@@ -176,7 +176,7 @@ export const testimonials = [
 export const faqs = [
   {
     q: "I'm a complete beginner. Can I join?",
-    a: "Absolutely — beginners are who we built the Foundations program for. Your first session includes a free assessment, and a coach walks you through everything before you touch a weight.",
+    a: "Absolutely. Beginners are who we built the Foundations program for. Your first session includes a free assessment, and a coach walks you through everything before you touch a weight.",
   },
   {
     q: "What are the membership options?",
@@ -196,7 +196,7 @@ export const faqs = [
   },
   {
     q: "Can I freeze or transfer my membership?",
-    a: "Monthly and annual memberships can be frozen for up to 30 days a year — just message us on WhatsApp and we'll sort it out.",
+    a: "Monthly and annual memberships can be frozen for up to 30 days a year. Just message us on WhatsApp and we'll sort it out.",
   },
 ];
 
@@ -204,7 +204,7 @@ export type TimeSlot = { time: string; classes: (string | null)[] };
 
 export const timetableDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-// [PLACEHOLDER] class schedule — null means open gym
+// [PLACEHOLDER] class schedule; null means open gym
 export const timetable: TimeSlot[] = [
   { time: "6:00 AM", classes: ["Strength", "HIIT", "Strength", "HIIT", "Strength", "Bootcamp", null] },
   { time: "8:00 AM", classes: [null, "Functional", null, "Functional", null, "Open Gym", "Open Gym"] },

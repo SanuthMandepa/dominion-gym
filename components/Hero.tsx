@@ -50,7 +50,7 @@ export default function Hero() {
 
       <div className="container-x relative">
         <p className="hero-fade eyebrow mb-6">
-          EST. {site.founded} — SRI LANKA <span className="text-beige/60">/ GYM & FITNESS CENTRE</span>
+          EST. {site.founded} / SRI LANKA <span className="text-beige/60">/ GYM & FITNESS CENTRE</span>
         </p>
 
         <h1 className="hero-title font-display leading-[0.88] text-[clamp(4rem,13vw,11.5rem)]">
@@ -70,7 +70,7 @@ export default function Hero() {
         <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <p className="hero-fade max-w-md text-base leading-relaxed text-beige md:text-lg">
             Gym is one day. <span className="text-cream">Transformation is discipline.</span> Train with
-            purpose at Sri Lanka&apos;s home of strength — programs, coaching and a floor built for results.
+            purpose at Sri Lanka&apos;s home of strength: programs, coaching and a floor built for results.
           </p>
           <div className="hero-fade flex flex-wrap gap-4">
             <Link href="/contact" className="btn btn-gold">

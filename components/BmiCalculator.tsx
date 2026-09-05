@@ -10,7 +10,7 @@ const categories = [
   { max: 18.5, label: "Underweight", color: "#7db8dc", program: "Muscle Building", slug: "muscle-building", advice: "You have room to grow. A structured hypertrophy program plus a calorie surplus will add lean, healthy mass." },
   { max: 25, label: "Healthy", color: "#8fce6c", program: "Strength Training", slug: "strength-training", advice: "Great base to build from. Strength or functional training will take your fitness to the next level." },
   { max: 30, label: "Overweight", color: "#dc993d", program: "Fat Loss & Conditioning", slug: "fat-loss", advice: "The Fat Loss program pairs conditioning circuits with strength work so you drop fat without losing muscle." },
-  { max: Infinity, label: "Obese", color: "#dc5b3d", program: "Fat Loss + Personal Training", slug: "personal-training", advice: "Start with guided 1-on-1 coaching. A custom, joint-friendly plan gets results safely — and we'll be with you every step." },
+  { max: Infinity, label: "Obese", color: "#dc5b3d", program: "Fat Loss + Personal Training", slug: "personal-training", advice: "Start with guided 1-on-1 coaching. A custom, joint-friendly plan gets results safely, and we'll be with you every step." },
 ];
 
 const GAUGE_MIN = 14;
@@ -82,7 +82,7 @@ export default function BmiCalculator() {
               <div className="space-y-6">
                 <div>
                   <label htmlFor="bmi-height" className={labelCls}>
-                    Height — {heightCm} cm
+                    Height: {heightCm} cm
                   </label>
                   <input
                     id="bmi-height"
@@ -96,7 +96,7 @@ export default function BmiCalculator() {
                 </div>
                 <div>
                   <label htmlFor="bmi-weight" className={labelCls}>
-                    Weight — {weightKg} kg
+                    Weight: {weightKg} kg
                   </label>
                   <input
                     id="bmi-weight"

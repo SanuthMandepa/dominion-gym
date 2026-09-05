@@ -10,7 +10,7 @@ import Reveal from "@/components/Reveal";
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Sticky horizontal scroller — vertical scroll drives the program cards
+ * Sticky horizontal scroller: vertical scroll drives the program cards
  * horizontally on desktop (CSS sticky, so React's DOM is never mutated).
  * On mobile it falls back to a native swipe carousel.
  */
@@ -27,7 +27,7 @@ export default function ProgramsScroller() {
       if (!section || !track) return;
 
       // The track is `w-max` on desktop, so its own width is the full row of
-      // cards. (scrollWidth would be useless here — overflow-x is visible.)
+      // cards. (scrollWidth would be useless here; overflow-x is visible.)
       const distance = () => Math.max(0, track.offsetWidth - window.innerWidth);
       const setHeight = () => {
         section.style.height = `${window.innerHeight + distance()}px`;
@@ -69,7 +69,7 @@ export default function ProgramsScroller() {
             </h2>
           </div>
           <p className="hidden max-w-xs text-sm text-beige md:block">
-            Keep scrolling — the floor moves with you. Six paths, one standard.
+            Keep scrolling. The floor moves with you. Six paths, one standard.
           </p>
         </Reveal>
 
@@ -80,8 +80,7 @@ export default function ProgramsScroller() {
           {programs.map((p) => (
             <article
               key={p.slug}
-              className="panel corner-tag group relative flex w-[82vw] max-w-105 shrink-0 snap-center flex-col justify-between p-8 md:w-105 md:p-10"
-              style={{ minHeight: "460px" }}
+              className="panel corner-tag group relative flex min-h-115 w-[82vw] max-w-105 shrink-0 snap-center flex-col justify-between p-8 md:w-105 md:p-10"
             >
               <div>
                 <span className="font-display text-stroke-faint text-[clamp(3.5rem,9vw,4.5rem)]">{p.num}</span>
@@ -116,7 +115,7 @@ export default function ProgramsScroller() {
           <article className="flex w-[82vw] max-w-105 shrink-0 snap-center flex-col items-start justify-center bg-gold p-10 text-onyx md:w-105">
             <h3 className="font-display text-[clamp(1.75rem,4vw,2.25rem)] leading-tight">NOT SURE WHERE TO START?</h3>
             <p className="mt-4 text-sm font-medium leading-relaxed">
-              Take the free BMI check below or message us — we&apos;ll match you to the right program.
+              Take the free BMI check below or message us and we&apos;ll match you to the right program.
             </p>
             <Link
               href="/#bmi"

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand palette — derived from the Dominion Fitness logo */
+  /* Brand palette, derived from the Dominion Fitness logo */
   --color-onyx: #0b0908;
   --color-coffee: #16110d;
   --color-surface: #1e1712;
@@ -221,7 +221,7 @@ details.faq .faq-icon {
   transition: transform 0.3s ease;
 }
 
-/* Placeholder "photo" panels — replace with real photos later */
+/* Placeholder "photo" panels, replace with real photos later */
 .photo-ph {
   position: relative;
   overflow: hidden;

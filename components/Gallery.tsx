@@ -1,7 +1,7 @@
 import Reveal from "@/components/Reveal";
 import { facilities } from "@/lib/data";
 
-/** Facilities grid — the .photo-ph panels are placeholders for real gym photos. */
+/** Facilities grid; the .photo-ph panels are placeholders for real gym photos. */
 export default function Gallery() {
   return (
     <section className="section-pad bg-onyx">
