@@ -10,8 +10,9 @@ import Reveal from "@/components/Reveal";
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Pinned section — vertical scroll drives the program cards horizontally
- * on desktop. On mobile it falls back to a native swipe carousel.
+ * Sticky horizontal scroller — vertical scroll drives the program cards
+ * horizontally on desktop (CSS sticky, so React's DOM is never mutated).
+ * On mobile it falls back to a native swipe carousel.
  */
 export default function ProgramsScroller() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -21,29 +22,34 @@ export default function ProgramsScroller() {
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
-      const track = trackRef.current;
       const section = sectionRef.current;
-      if (!track || !section) return;
+      const track = trackRef.current;
+      if (!section || !track) return;
 
-      const getDistance = () => track.scrollWidth - window.innerWidth;
+      const distance = () => Math.max(0, track.scrollWidth - window.innerWidth);
+      const setHeight = () => {
+        section.style.height = `${window.innerHeight + distance()}px`;
+      };
+      setHeight();
 
       const tween = gsap.to(track, {
-        x: () => -getDistance(),
+        x: () => -distance(),
         ease: "none",
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: () => `+=${getDistance()}`,
-          pin: true,
+          end: "bottom bottom",
           scrub: 1,
           invalidateOnRefresh: true,
-          anticipatePin: 1,
+          onRefreshInit: setHeight,
         },
       });
 
       return () => {
         tween.scrollTrigger?.kill();
         tween.kill();
+        section.style.height = "";
+        gsap.set(track, { clearProps: "x" });
       };
     });
 
@@ -51,8 +57,8 @@ export default function ProgramsScroller() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="programs" className="overflow-hidden bg-onyx">
-      <div className="flex min-h-svh flex-col justify-center py-16">
+    <section ref={sectionRef} id="programs" className="bg-onyx">
+      <div className="sticky top-0 flex min-h-svh flex-col justify-center overflow-hidden py-16">
         <Reveal className="container-x mb-10 flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="eyebrow mb-3">What we train</p>
@@ -106,9 +112,7 @@ export default function ProgramsScroller() {
 
           {/* End card */}
           <article className="flex w-[82vw] max-w-[420px] shrink-0 snap-center flex-col items-start justify-center bg-gold p-10 text-onyx md:w-[420px]">
-            <h3 className="font-display text-4xl leading-tight">
-              NOT SURE WHERE TO START?
-            </h3>
+            <h3 className="font-display text-4xl leading-tight">NOT SURE WHERE TO START?</h3>
             <p className="mt-4 text-sm font-medium leading-relaxed">
               Take the free BMI check below or message us — we&apos;ll match you to the right program.
             </p>
