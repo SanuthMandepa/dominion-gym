@@ -88,7 +88,7 @@ export default function Footer() {
             <ul className="space-y-4 text-sm text-beige">
               <li>{site.address}</li>
               <li>
-                <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="transition-colors hover:text-gold">
+                <a href={`tel:${site.phoneIntl}`} className="transition-colors hover:text-gold">
                   {site.phone}
                 </a>
               </li>

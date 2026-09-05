@@ -8,10 +8,17 @@ export const site = {
   name: "Dominion Fitness",
   tagline: "Rule Your Body",
   url: "https://dominionfitness.lk", // [PLACEHOLDER] real domain
-  phone: "+94 77 123 4567", // [PLACEHOLDER]
-  whatsapp: "94771234567", // [PLACEHOLDER] digits only, country code first
+  phone: "076 592 6206",
+  phoneIntl: "+94765926206", // used for tel: links and schema.org
+  whatsapp: "94765926206", // digits only, country code first
   email: "hello@dominionfitness.lk", // [PLACEHOLDER]
-  address: "No. 123, Main Street, Colombo, Sri Lanka", // [PLACEHOLDER]
+  address: "Dodangoda, Kalutara, Sri Lanka",
+  plusCode: "H256+8WW Kalutara",
+  geo: { lat: 6.5583083, lng: 80.0124326 },
+  /** Opens Google Maps directions to the gym. */
+  directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=6.5583083,80.0124326",
+  /** Keyless Google Maps iframe source for the contact page. */
+  mapEmbedUrl: "https://maps.google.com/maps?q=6.5583083,80.0124326&z=16&output=embed",
   facebook: "https://www.facebook.com/profile.php?id=61582455574791",
   founded: "2025",
   hours: [

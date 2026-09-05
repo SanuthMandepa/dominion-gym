@@ -26,7 +26,8 @@ Then open http://localhost:3000. To build for production: `npm run build && npm 
 **Almost everything you need to change lives in [`lib/data.ts`](lib/data.ts).**
 Anything still carrying real-world defaults is marked `[PLACEHOLDER]` there:
 
-- `site`: phone, WhatsApp number, email, address, domain, opening hours
+- `site`: email and domain are still placeholders; phone, WhatsApp, address,
+  plus code, map coordinates and opening hours are real
 - `pricing`: the three membership tiers (currently in LKR)
 - `coach`: bio and certifications
 - `testimonials`: swap for real member reviews

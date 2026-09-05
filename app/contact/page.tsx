@@ -39,17 +39,31 @@ export default function ContactPage() {
             <Reveal className="panel p-8">
               <p className="eyebrow mb-3">Visit us</p>
               <p className="font-display text-2xl leading-snug">{site.address}</p>
-              {/* Map placeholder: drop a Google Maps embed <iframe> here */}
-              <div className="photo-ph mt-6 flex aspect-[16/8] items-center justify-center">
-                <p className="text-xs uppercase tracking-[0.25em] text-beige/60">Map embed goes here</p>
-              </div>
+              <p className="mt-2 text-sm text-beige">Plus code {site.plusCode}</p>
+              <iframe
+                src={site.mapEmbedUrl}
+                title={`Map showing ${site.name} in ${site.address}`}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+                className="mt-6 aspect-16/8 w-full border-0 grayscale-[0.4] contrast-[1.1]"
+              />
+              <a
+                href={site.directionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-gold"
+              >
+                Get directions
+                <span aria-hidden>→</span>
+              </a>
             </Reveal>
 
             <div className="grid gap-5 sm:grid-cols-2">
               <Reveal delay={0.1} className="panel p-8">
                 <p className="eyebrow mb-3">Call us</p>
                 <a
-                  href={`tel:${site.phone.replace(/\s/g, "")}`}
+                  href={`tel:${site.phoneIntl}`}
                   className="font-display text-xl transition-colors hover:text-gold"
                 >
                   {site.phone}

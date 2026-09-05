@@ -58,13 +58,20 @@ const jsonLd = {
   "@type": "Gym",
   name: site.name,
   url: site.url,
-  telephone: site.phone,
+  telephone: site.phoneIntl,
   email: site.email,
   address: {
     "@type": "PostalAddress",
     streetAddress: site.address,
+    addressLocality: "Kalutara",
     addressCountry: "LK",
   },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: site.geo.lat,
+    longitude: site.geo.lng,
+  },
+  hasMap: site.directionsUrl,
   sameAs: [site.facebook],
   foundingDate: site.founded,
   openingHoursSpecification: [
